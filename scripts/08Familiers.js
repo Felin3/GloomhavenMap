@@ -5,6 +5,7 @@ function constructAlliesAndFamiliarsTabFromConfig() {
 	constructVillagersTabFromConfig();
 }
 
+
 function constructAlliesTabFromConfig() {
 	if (config.allies != undefined) {
 		for (var i = 0 ; i < config.allies.length; i++) {
