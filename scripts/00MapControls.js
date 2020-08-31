@@ -415,7 +415,7 @@ function CreateOneObjectOnSQUAREMap(OneObject, LineType) {
 			}
 		}
 	}
-	ImageFullPath = ImageFullPath + urlize(OneObject.title.replace(MinionSuffix, '') + doorStatus) + side + '.png';
+	ImageFullPath = ImageFullPath + urlize(OneObject.title.replace(MinionSuffix, '') + doorStatus + side) + '.png';
 	NewMapObjectImage.attr('src', ImageFullPath);
 	//rotation
 	if (angle != "0") {
@@ -611,7 +611,7 @@ function CreateOneObjectOnHEXMap(OneObject, LineType) {
 			}
 		}
 	}
-	ImageFullPath = ImageFullPath + urlize(OneObject.title.replace(MinionSuffix, '') + doorStatus) + side + '.png';
+	ImageFullPath = ImageFullPath + urlize(OneObject.title.replace(MinionSuffix, '') + doorStatus + side) + '.png';
 	NewMapObjectImage.attr('src', ImageFullPath);
 
 	//Put Image In Div + Css positioning
