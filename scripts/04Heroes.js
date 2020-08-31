@@ -125,7 +125,11 @@ function AddLine_Hero() {
 function Create_HeroListValues() {
 	var html = addOption('Clear', '', 'UnSet_Hero(this);');
 	Object.keys(HEROES_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Hero(this, \'' + item + '\')');
+		var additionalText = ''
+		if (heroLine.DisplayExpansionNameInSelect == true) {
+			additionalText = '- ' + HEROES_LIST[item].expansion;
+		}
+		html += addOption(item + ' ' + additionalText, '', 'Set_Hero(this, \'' + item + '\')');
 	});
 	return html;
 }

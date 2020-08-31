@@ -120,7 +120,7 @@ MAP_TILES_RAW = [
 	['l3', 7, 5, 68, 39, bg],
 	['m1', 7, 6, 68, 117, bg],
 	['n1', 7, 8, 68, 39, bg],
-	['jotl_01', 11, 7, 68, 39, jotl],
+	['01', 11, 7, 68, 39, jotl],
 ];
 MAP_TILES_LIST = FromRAWToLIST(MAP_TILES_RAW);
 
@@ -594,6 +594,7 @@ heroLine.needAddTokenButton = true;
 heroLine.needAddAuraButton = false;
 heroLine.needRemoveButton = false;
 heroLine.UsesExpansionPath = true;
+heroLine.DisplayExpansionNameInSelect = true;
 heroLine.MainCardsPath = "heroes_cards";
 heroLine.MainMapTokensPath = "heroes_tokens";
 heroLine.mapData.Layer = "figures";

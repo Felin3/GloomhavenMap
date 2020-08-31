@@ -30,6 +30,8 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	this.MainCardsPath = "";
 	this.MainMapTokensPath = "";
 	this.UsesExpansionPath = false;
+	this.ExpansionPath = false;
+	this.DisplayExpansionNameInSelect = false;
 	this.needExpantionFilter = false;
 
 	this.CallBackOnRemove = RemoveCallBack;		// -> should have a value if needRemoveButton = true
