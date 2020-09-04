@@ -601,9 +601,9 @@ function Add_TokenImage(TokenImageContainer, NewValue) {
 	//	TokenImageContainer = $('.'+ContainerName);
 	//}
 	if (NewValue != undefined && NewValue != '' && CONDITIONS[NewValue].hasConditionCard) {
-		if (TokenImageContainer.find('.' + urlize(NewValue)).length == 0) {
+		if (TokenImageContainer.find('.' + urlize('c' + NewValue)).length == 0) {
 			var TokenImage = $('<img>');
-			TokenImage.attr('src', ImagePathRoot + ImagePathConditionImage + urlize(NewValue) + '.png').addClass('condition'); //.addClass(urlize(NewValue));
+			TokenImage.attr('src', ImagePathRoot + ImagePathConditionImage + urlize(NewValue) + '.png').addClass('condition').addClass(urlize('c' + NewValue));
 			TokenImageContainer.append(TokenImage);
 		}
 	}

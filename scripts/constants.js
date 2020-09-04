@@ -215,18 +215,18 @@ MOVABLE_TOKENS_LIST = Object.assign(TMP_LIST1, TMP_LIST2);
 var ImagePathConditionImage = "_common/conditions_tokens/";
 var ImagePathConditionFigureToken = "_common/conditions_tokens/";
 CONDITIONS_INITIAL = [
-	['Bless', true],
-	['Curse', true],
-	['Disarm', true],
-	['Immobilize', true],
-	['Invisible', true],
-	['Muddle', true],
-	['Poison', true],
-	['Strengthen', true],
-	['Stun', true],
-	['Wound', true],
-	['Angry Face', true],
-	['Aeromancer', true],
+	['Bless', true, false],
+	['Curse', true, false],
+	['Disarm', true, false],
+	['Immobilize', true, false],
+	['Invisible', true, false],
+	['Muddle', true, false],
+	['Poison', true, false],
+	['Strengthen', true, false],
+	['Stun', true, false],
+	['Wound', true, false],
+	['Angry Face', true, false],
+	['Aeromancer', true, false],
 ];
 
 var CONDITIONS = {};
@@ -234,7 +234,7 @@ var CONDITIONS_LIST = [];
 
 for (var i = 0; i < CONDITIONS_INITIAL.length; i++) {
 	CONDITIONS_LIST.push(CONDITIONS_INITIAL[i][0]);
-	CONDITIONS[CONDITIONS_INITIAL[i][0]] = { 'hasConditionCard': CONDITIONS_INITIAL[i][1] };
+	CONDITIONS[CONDITIONS_INITIAL[i][0]] = { 'hasConditionCard': CONDITIONS_INITIAL[i][1], 'canApplyMultipleTimes': CONDITIONS_INITIAL[i][2] };
 }
 
 // -----------------------------------------------

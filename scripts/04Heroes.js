@@ -52,9 +52,10 @@ function CreateZone_Heroes(HeroNumber) {
 	// using specific Element ID and
 	// using common image container for specific hero .. but using number
 	heroLine.elementID = "hero" + HeroNumber.toString()
-	heroLine.TokenCommonImageContainer = "hero" + HeroNumber.toString() + "-conditions-container";
 
+	heroLine.TokenCommonImageContainer = "hero" + HeroNumber.toString() + "-conditions-container";
 	html.append(AddLine_Hero());
+
 	//add specific Zones
 	html.append($('<div>').addClass('hero' + HeroNumber.toString() + '-conditions-container').addClass('conditions-container'));
 	html.append(CreateZone_HeroIamge())
@@ -107,6 +108,7 @@ function FillZone_Heroes(NewData, FromPreFilledMaps) {
 			//Update_HeroImages(html);
 			$('#hero' + (i + 1).toString() + ' .heroes-container').prepend(html);
 			Update_HeroImages($('#hero' + (i + 1).toString() + ' .heroes-container'));
+			Update_TokenImages(html);
 		}
 	}
 }
