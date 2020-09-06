@@ -282,7 +282,8 @@ var MONSTERS_RAW = [
 	[33, 'Vermling Scout', 1, 1, 41, 35, bg, false, [dummy], false],
 	[34, 'Vermling Shaman', 1, 1, 41, 35, bg, false, [dummy], false],
 	[35, 'Wind Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	[36, 'JotL Black Sludge', 1, 1, 41, 35, jotl, false, [dummy], false]
+	[36, 'JotL Black Sludge', 1, 1, 41, 35, jotl, false, [dummy], false],
+	[37, 'Ancient Artillery', 1, 1, 41, 35, jotl, false, [dummy], false]
 ];
 
 function getMonsterTraits(i) {
