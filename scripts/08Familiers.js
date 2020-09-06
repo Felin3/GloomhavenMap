@@ -92,7 +92,7 @@ function RemoveLine_Familiar(Button) {
 function Create_FamiliarListValues() {
 	var html = addOption('Clear', '', 'UnSet_Familiar(this);');
 	Object.keys(FAMILIARS_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Familiar(this, \'' + item + '\')');
+		html += addOption(FAMILIARS_LIST[item].title + ' ', '', 'Set_Familiar(this, \'' + item + '\')');
 	});
 	return html;
 }
@@ -184,7 +184,7 @@ function AddLine_Villager() {
 function Create_VillagerListValues() {
 	var html = addOption('Clear', '', 'UnSet_Villager(this);');
 	Object.keys(VILLAGERS_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Villager(this, \'' + item + '\')');
+		html += addOption(VILLAGERS_LIST[item].title + ' ', '', 'Set_Villager(this, \'' + item + '\')');
 	});
 	return html;
 }

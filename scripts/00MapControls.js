@@ -570,7 +570,7 @@ function CreateOneObjectOnSQUAREMap(OneObject, LineType) {
 	return NewMapObject;
 }
 function CreateOneObjectOnHEXMap(OneObject, LineType) {
-	if (OneObject.title == '') {
+	if (OneObject.id == '' || OneObject.id == 0 ) {
 		return;
 	}
 
@@ -601,7 +601,7 @@ function CreateOneObjectOnHEXMap(OneObject, LineType) {
 
 	//New Image
 	var NewMapObjectImage = $('<img>');
-	ImageFullPath = ImageFullPath + LineType.MapTokensPath(EXPANSION_PATHS[LineType.AllData[recoverMonsterBaseName(OneObject.title)].expansion]);
+	ImageFullPath = ImageFullPath + LineType.MapTokensPath(EXPANSION_PATHS[LineType.AllData[recoverMonsterBaseName(OneObject.id)].expansion]);
 	var doorStatus = "";
 	if (OpenedClosedType == "OC") {
 		if (LineType.elementName == "door") {
@@ -611,19 +611,19 @@ function CreateOneObjectOnHEXMap(OneObject, LineType) {
 			}
 		}
 	}
-	ImageFullPath = ImageFullPath + urlize(OneObject.title.replace(MinionSuffix, '') + doorStatus + side) + '.png';
+	ImageFullPath = ImageFullPath + urlize(LineType.AllData[recoverMonsterBaseName(OneObject.id)].title.replace(MinionSuffix, '') + doorStatus + side) + '.png';
 	NewMapObjectImage.attr('src', ImageFullPath);
 
 	//Put Image In Div + Css positioning
 	var NewMapObject = $('<div>');
 	NewMapObject.css({
 		'position': 'absolute',
-		'left': ((Math.floor(OneObject.x * HCellSize * 3 / 4)) - LineType.AllData[recoverMonsterBaseName(OneObject.title)].left + (HCellSize / 2)).toString() + 'px',
-		'top': ((OneObject.y * VCellSize) - LineType.AllData[recoverMonsterBaseName(OneObject.title)].top + (VCellSize / 2) + HexDelta).toString() + 'px',
+		'left': ((Math.floor(OneObject.x * HCellSize * 3 / 4)) - LineType.AllData[recoverMonsterBaseName(OneObject.id)].left + (HCellSize / 2)).toString() + 'px',
+		'top': ((OneObject.y * VCellSize) - LineType.AllData[recoverMonsterBaseName(OneObject.id)].top + (VCellSize / 2) + HexDelta).toString() + 'px',
 		'-ms-transform': 'rotate(' + angle + 'deg)',
 		'-webkit-transform': 'rotate(' + angle + 'deg)',
 		'transform': 'rotate(' + angle + 'deg)',
-		'transform-origin': LineType.AllData[recoverMonsterBaseName(OneObject.title)].left + 'px ' + LineType.AllData[recoverMonsterBaseName(OneObject.title)].top + 'px',
+		'transform-origin': LineType.AllData[recoverMonsterBaseName(OneObject.id)].left + 'px ' + LineType.AllData[recoverMonsterBaseName(OneObject.id)].top + 'px',
 		'z-index': zIndex
 	});
 	if (LineType.elementName == "hero" || LineType.elementName == "monster" || LineType.elementName == "lieutenant") {

@@ -131,7 +131,7 @@ function Create_HeroListValues() {
 		if (heroLine.DisplayExpansionNameInSelect == true) {
 			additionalText = '- ' + HEROES_LIST[item].expansion;
 		}
-		html += addOption(item + ' ' + additionalText, '', 'Set_Hero(this, \'' + item + '\')');
+		html += addOption(HEROES_LIST[item].title + ' ' + additionalText, '', 'Set_Hero(this, \'' + item + '\')');
 	});
 	return html;
 }
@@ -176,8 +176,8 @@ function Update_HeroImages(RowElement) {
 	var OneHeroValue = RowElement.find('.MainElement-Value').val();
 	if (OneHeroValue != undefined && OneHeroValue != '') {
 		if (HeroImage != undefined) {
-			HeroImage.attr('src', ImagePathRoot + heroLine.CardsPath(EXPANSION_PATHS[heroLine.AllData[OneHeroValue].expansion]) + urlize(OneHeroValue) + '.png');
-			HeroTokenPath = ImagePathRoot + heroLine.MapTokensPath(EXPANSION_PATHS[heroLine.AllData[OneHeroValue].expansion]) + urlize(OneHeroValue) + '.png';
+			HeroImage.attr('src', ImagePathRoot + heroLine.CardsPath(EXPANSION_PATHS[heroLine.AllData[OneHeroValue].expansion]) + urlize(heroLine.AllData[OneHeroValue].title) + '.png');
+			HeroTokenPath = ImagePathRoot + heroLine.MapTokensPath(EXPANSION_PATHS[heroLine.AllData[OneHeroValue].expansion]) + urlize(heroLine.AllData[OneHeroValue].title) + '.png';
 		}
 	}
 	else {

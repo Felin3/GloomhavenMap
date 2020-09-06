@@ -56,7 +56,7 @@ function FillZone_MovableMapTokens(NewData, FromPreFilledMaps) {
 	ResetZone_MovableMapTokens(FromPreFilledMaps);
 	if (NewData.maptokens != undefined) {
 		for (var i = 0 ; i < NewData.maptokens.length; i++) {
-			MovableMapTokenLine.XYBase = MOVABLE_TOKENS_LIST[NewData.maptokens[i].title].width + 'x' + MOVABLE_TOKENS_LIST[NewData.maptokens[i].title].height;
+			MovableMapTokenLine.XYBase = MovableMapTokenLine.AllData[NewData.maptokens[i].id].width + 'x' + MovableMapTokenLine.AllData[NewData.maptokens[i].id].height;
 			var html = MovableMapTokenLine.AddOneLineWithData(NewData.maptokens[i]);
 			$('.maptoken-container').append(html);
 		}
@@ -77,14 +77,14 @@ function AddLine_MovableMapTokens() {
 function Create_MovableMapTokenListValues() {
 	var html = addOption('Clear', '', 'UnSet_MovableMapTokens(this);');
 	Object.keys(MOVABLE_TOKENS_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_MovableMapTokens(this, \'' + item + '\')');
+		html += addOption(MOVABLE_TOKENS_LIST[item].title + ' ', '', 'Set_MovableMapTokens(this, \'' + item + '\')');
 	});
 	return html;
 }
 
 function Set_MovableMapTokens(element, value) {
 	var container = $(element).parents('.select-row');
-	MovableMapTokenLine.XYBase = MOVABLE_TOKENS_LIST[value].width + 'x' + MOVABLE_TOKENS_LIST[value].height;
+	MovableMapTokenLine.XYBase = MovableMapTokenLine.AllData[value].width + 'x' + MovableMapTokenLine.AllData[value].height;
 	MovableMapTokenLine.Set_MainElement(container, value);
 }
 

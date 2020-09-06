@@ -90,7 +90,7 @@ function AddLine_Tile() {
 function Create_TileListValues() {
 	var html = addOption('Clear', '', 'UnSet_Tile(this);');
 	Object.keys(MAP_TILES_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Tile(this, \'' + item + '\')');
+		html += addOption(MAP_TILES_LIST[item].title + ' ', '', 'Set_Tile(this, \'' + item + '\')');
 	});
 	return html;
 }
@@ -136,7 +136,7 @@ function FillZone_Doors(NewData, FromPreFilledMaps) {
 	ResetZone_Doors(FromPreFilledMaps);
 	if (NewData.doors != undefined) {
 		for (var i = 0 ; i < NewData.doors.length; i++) {
-			doorLine.XYBase = DOORS_LIST[NewData.doors[i].title].width + 'x' + DOORS_LIST[NewData.doors[i].title].height;
+			doorLine.XYBase = doorLine.AllData[NewData.doors[i].id].width + 'x' + doorLine.AllData[NewData.doors[i].id].height;
 			var html = doorLine.AddOneLineWithData(NewData.doors[i]);
 			$('.doors-container').append(html);
 		}
@@ -157,7 +157,7 @@ function AddLine_Door() {
 function Create_DoorListValues() {
 	var html = addOption('Clear', '', 'UnSet_Door(this);');
 	Object.keys(DOORS_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Door(this, \'' + item + '\')');
+		html += addOption(DOORS_LIST[item].title + ' ', '', 'Set_Door(this, \'' + item + '\')');
 	});
 	return html;
 }
@@ -203,7 +203,7 @@ function FillZone_OverlayTiles(NewData, FromPreFilledMaps) {
 	ResetZone_OverlayTiles(FromPreFilledMaps);
 	if (NewData.overlaytiles != undefined) {
 		for (var i = 0 ; i < NewData.overlaytiles.length; i++) {
-			OverlayTileLine.XYBase = OVERLAYTILES_LIST[NewData.overlaytiles[i].title].width + 'x' + OVERLAYTILES_LIST[NewData.overlaytiles[i].title].height;
+			OverlayTileLine.XYBase = OverlayTileLine.AllData[NewData.overlaytiles[i].id].width + 'x' + OverlayTileLine.AllData[NewData.overlaytiles[i].id].height;
 			var html = OverlayTileLine.AddOneLineWithData(NewData.overlaytiles[i]);
 			$('.overlaytile-container').append(html);
 		}
@@ -224,14 +224,14 @@ function AddLine_OverlayTiles() {
 function Create_OverlayTileListValues() {
 	var html = addOption('Clear', '', 'UnSet_OverlayTiles(this);');
 	Object.keys(OVERLAYTILES_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_OverlayTiles(this, \'' + item + '\')');
+		html += addOption(OVERLAYTILES_LIST[item].title + ' ', '', 'Set_OverlayTiles(this, \'' + item + '\')');
 	});
 	return html;
 }
 
 function Set_OverlayTiles(element, value) {
 	var container = $(element).parents('.select-row');
-	OverlayTileLine.XYBase = OVERLAYTILES_LIST[value].width + 'x' + OVERLAYTILES_LIST[value].height;
+	OverlayTileLine.XYBase = OverlayTileLine.AllData[value].width + 'x' + OverlayTileLine.AllData[value].height;
 	OverlayTileLine.Set_MainElement(container, value);
 }
 

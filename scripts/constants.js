@@ -43,12 +43,13 @@ function FromRAWToLIST(RAWArray) {
 	var LISTArray = {};
 	for (var i = 0; i < RAWArray.length; i++) {
 		var innerObject = {};
-		innerObject.title = RAWArray[i][0];
-		innerObject.width = RAWArray[i][1];
-		innerObject.height = RAWArray[i][2];
-		innerObject.left = RAWArray[i][3];
-		innerObject.top = RAWArray[i][4];
-		innerObject.expansion = RAWArray[i][5];
+		innerObject.id = RAWArray[i][0];
+		innerObject.title = RAWArray[i][1];
+		innerObject.width = RAWArray[i][2];
+		innerObject.height = RAWArray[i][3];
+		innerObject.left = RAWArray[i][4];
+		innerObject.top = RAWArray[i][5];
+		innerObject.expansion = RAWArray[i][6];
 		LISTArray[RAWArray[i][0]] = innerObject;
 	}
 	return LISTArray;
@@ -90,37 +91,37 @@ var ImagePathLevel = "";
 
 //name,cols width, row height, width delta, height delta, expansion
 MAP_TILES_RAW = [
-	['a1', 2, 5, 68, 39, bg],
-	['a2', 2, 5, 68, 39, bg],
-	['a3', 2, 5, 68, 39, bg],
-	['a4', 2, 5, 68, 39, bg],
-	['b1', 4, 4, 68, 78, bg],
-	['b2', 4, 4, 68, 78, bg],
-	['b3', 4, 4, 68, 78, bg],
-	['b4', 4, 4, 68, 78, bg],
-	['c1', 4, 4, 68, 117, bg],
-	['c2', 4, 4, 68, 117, bg],
-	['d1', 5, 5, 68, 156, bg],
-	['d2', 5, 5, 68, 156, bg],
-	['e1', 5, 5, 68, 78, bg],
-	['f1', 9, 3, 68, 39, bg],
-	['g1', 8, 3, 68, 39, bg],
-	['g2', 8, 3, 68, 39, bg],
-	['h1', 7, 7, 68, 234, bg],
-	['h2', 7, 7, 68, 234, bg],
-	['h3', 7, 7, 68, 234, bg],
-	['i1', 5, 6, 68, 39, bg],
-	['i2', 5, 6, 68, 39, bg],
-	['j1', 7, 9, 68, 39, bg],
-	['j2', 7, 9, 68, 39, bg],
-	['k1', 6, 8, 68, 117, bg],
-	['k2', 6, 8, 68, 117, bg],
-	['l1', 7, 5, 68, 39, bg],
-	['l2', 7, 5, 68, 39, bg],
-	['l3', 7, 5, 68, 39, bg],
-	['m1', 7, 6, 68, 117, bg],
-	['n1', 7, 8, 68, 39, bg],
-	['01', 11, 7, 68, 39, jotl],
+	[1, 'a1', 2, 5, 68, 39, bg],
+	[2, 'a2', 2, 5, 68, 39, bg],
+	[3, 'a3', 2, 5, 68, 39, bg],
+	[4, 'a4', 2, 5, 68, 39, bg],
+	[5, 'b1', 4, 4, 68, 78, bg],
+	[6, 'b2', 4, 4, 68, 78, bg],
+	[7, 'b3', 4, 4, 68, 78, bg],
+	[8, 'b4', 4, 4, 68, 78, bg],
+	[9, 'c1', 4, 4, 68, 117, bg],
+	[10, 'c2', 4, 4, 68, 117, bg],
+	[11, 'd1', 5, 5, 68, 156, bg],
+	[12, 'd2', 5, 5, 68, 156, bg],
+	[13, 'e1', 5, 5, 68, 78, bg],
+	[14, 'f1', 9, 3, 68, 39, bg],
+	[15, 'g1', 8, 3, 68, 39, bg],
+	[16, 'g2', 8, 3, 68, 39, bg],
+	[17, 'h1', 7, 7, 68, 234, bg],
+	[18, 'h2', 7, 7, 68, 234, bg],
+	[19, 'h3', 7, 7, 68, 234, bg],
+	[20, 'i1', 5, 6, 68, 39, bg],
+	[21, 'i2', 5, 6, 68, 39, bg],
+	[22, 'j1', 7, 9, 68, 39, bg],
+	[23, 'j2', 7, 9, 68, 39, bg],
+	[24, 'k1', 6, 8, 68, 117, bg],
+	[25, 'k2', 6, 8, 68, 117, bg],
+	[26, 'l1', 7, 5, 68, 39, bg],
+	[27, 'l2', 7, 5, 68, 39, bg],
+	[28, 'l3', 7, 5, 68, 39, bg],
+	[29, 'm1', 7, 6, 68, 117, bg],
+	[30, 'n1', 7, 8, 68, 39, bg],
+	[31, '01', 11, 7, 68, 39, jotl],
 ];
 MAP_TILES_LIST = FromRAWToLIST(MAP_TILES_RAW);
 
@@ -135,77 +136,78 @@ ANGLES_LIST = [
 
 
 OVERLAYTILES_RAW = [
-	['corridor earth 1h', 1, 1, 45, 39, bg],
-	['corridor earth 2h', 1, 1, 45, 39, bg],
-	['corridor man made stone 1h', 1, 1, 45, 39, bg],
-	['corridor man made stone 2h', 1, 1, 45, 39, bg],
-	['corridor natural stone 1h', 1, 1, 45, 39, bg],
-	['corridor natural stone 2h', 1, 1, 45, 39, bg],
-	['corridor wood 1h', 1, 1, 45, 39, bg],
-	['corridor wood 2h', 1, 1, 45, 39, bg],
-	['pressure plate', 1, 1, 45, 39, bg],
-	['hot coals', 1, 1, 45, 39, bg],
-	['hot coals 2h', 1, 1, 45, 39, bg],
-	['hot coals 3h', 1, 1, 45, 39, bg],
-	['log 2h', 1, 1, 45, 39, bg],
-	['rubble', 1, 1, 45, 39, bg],
-	['stairs', 1, 1, 45, 39, bg],
-	['thorns', 1, 1, 45, 39, bg],
-	['water', 1, 1, 45, 39, bg],
-	['water 2h', 1, 1, 45, 39, bg],
-	['water 3h', 1, 1, 45, 39, bg]
-];
+	[1, 'corridor earth 1h', 1, 1, 45, 39, bg],
+	[2, 'corridor earth 2h', 1, 1, 45, 39, bg],
+	[3, 'corridor man made stone 1h', 1, 1, 45, 39, bg],
+	[4, 'corridor man made stone 2h', 1, 1, 45, 39, bg],
+	[5, 'corridor natural stone 1h', 1, 1, 45, 39, bg],
+	[6, 'corridor natural stone 2h', 1, 1, 45, 39, bg],
+	[7, 'corridor wood 1h', 1, 1, 45, 39, bg],
+	[8, 'corridor wood 2h', 1, 1, 45, 39, bg],
+	[9, 'pressure plate', 1, 1, 45, 39, bg],
+	[10, 'hot coals', 1, 1, 45, 39, bg],
+	[11, 'hot coals 2h', 1, 1, 45, 39, bg],
+	[12, 'hot coals 3h', 1, 1, 45, 39, bg],
+	[13, 'log 2h', 1, 1, 45, 39, bg],
+	[14, 'rubble', 1, 1, 45, 39, bg],
+	[15, 'stairs', 1, 1, 45, 39, bg],
+	[16, 'thorns', 1, 1, 45, 39, bg],
+	[17, 'water', 1, 1, 45, 39, bg],
+	[18, 'water 2h', 1, 1, 45, 39, bg],
+	[19, 'water 3h', 1, 1, 45, 39, bg]
+]; 
 OVERLAYTILES_LIST = FromRAWToLIST(OVERLAYTILES_RAW);
 
 DOORS_RAW = [
-	['Stone Door H', 1, 1, 45, 39, bg],
-	['Stone Door V', 1, 1, 45, 39, bg],
-	['Wooden Door H', 1, 1, 45, 39, bg],
-	['Wooden Door V', 1, 1, 45, 39, bg],
-	['Dark Fog', 1, 1, 45, 39, bg],
-	['Light Fog', 1, 1, 45, 39, bg]
+	[1, 'Stone Door H', 1, 1, 45, 39, bg],
+	[2, 'Stone Door V', 1, 1, 45, 39, bg],
+	[3, 'Wooden Door H', 1, 1, 45, 39, bg],
+	[4, 'Wooden Door V', 1, 1, 45, 39, bg],
+	[5, 'Dark Fog', 1, 1, 45, 39, bg],
+	[6, 'Light Fog', 1, 1, 45, 39, bg]
 ];
 DOORS_LIST = FromRAWToLIST(DOORS_RAW);
 
 // -----------------------------------------------
 
 MOVABLE_TOKENS1_RAW = [
-	['Coin1', 1, 1, 45, 39, bg],
-	['Coin5', 1, 1, 45, 39, bg]
+	[1, 'Coin1', 1, 1, 45, 39, bg],
+	[2, 'Coin5', 1, 1, 45, 39, bg]
 ];
 TMP_LIST1 = FromRAWToLIST(MOVABLE_TOKENS1_RAW);
 var TempObject = {};
+TempObject.id = 3;
 TempObject.title = "$SEPARATOR$";
-TMP_LIST1[TempObject.title] = TempObject;
+TMP_LIST1[TempObject.id] = TempObject;
 
 MOVABLE_TOKENS2_RAW = [
-	['Altar', 1, 1, 45, 39, bg],
-	['Barrel', 1, 1, 45, 39, bg],
-	['Bear Trap', 1, 1, 45, 39, bg],
-	['Bookcase', 1, 1, 45, 39, bg],
-	['Boulder 1H', 1, 1, 45, 39, bg],
-	['Boulder 2H', 1, 1, 45, 39, bg],
-	['Boulder 3H', 1, 1, 45, 39, bg],
-	['Bush', 1, 1, 45, 39, bg],
-	['Cabinet', 1, 1, 45, 39, bg],
-	['Crate', 1, 1, 45, 39, bg],
-	['Crystal', 1, 1, 45, 39, bg],
-	['Dark Pit 2H', 1, 1, 45, 39, bg],
-	['Fountain', 1, 1, 45, 39, bg],
-	['Nest', 1, 1, 45, 39, bg],
-	['Poison Gas Trap', 1, 1, 45, 39, bg],
-	['Rock Column', 1, 1, 45, 39, bg],
-	['Sarcophagus 2H', 1, 1, 45, 39, bg],
-	['Shelf 2H', 1, 1, 45, 39, bg],
-	['Spike Trap', 1, 1, 45, 39, bg],
-	['Stalagmites', 1, 1, 45, 39, bg],
-	['Stone Pillar', 1, 1, 45, 39, bg],
-	['Stump', 1, 1, 45, 39, bg],
-	['Table 2H', 1, 1, 45, 39, bg],
-	['Totem', 1, 1, 45, 39, bg],
-	['Treasure Tile', 1, 1, 45, 39, bg],
-	['Tree 3H', 1, 1, 45, 39, bg],
-	['Wall Section 2H', 1, 1, 45, 39, bg]
+	[4, 'Altar', 1, 1, 45, 39, bg],
+	[5, 'Barrel', 1, 1, 45, 39, bg],
+	[6, 'Bear Trap', 1, 1, 45, 39, bg],
+	[7, 'Bookcase', 1, 1, 45, 39, bg],
+	[8, 'Boulder 1H', 1, 1, 45, 39, bg],
+	[9, 'Boulder 2H', 1, 1, 45, 39, bg],
+	[10, 'Boulder 3H', 1, 1, 45, 39, bg],
+	[11, 'Bush', 1, 1, 45, 39, bg],
+	[12, 'Cabinet', 1, 1, 45, 39, bg],
+	[13, 'Crate', 1, 1, 45, 39, bg],
+	[14, 'Crystal', 1, 1, 45, 39, bg],
+	[15, 'Dark Pit 2H', 1, 1, 45, 39, bg],
+	[16, 'Fountain', 1, 1, 45, 39, bg],
+	[17, 'Nest', 1, 1, 45, 39, bg],
+	[18, 'Poison Gas Trap', 1, 1, 45, 39, bg],
+	[19, 'Rock Column', 1, 1, 45, 39, bg],
+	[20, 'Sarcophagus 2H', 1, 1, 45, 39, bg],
+	[21, 'Shelf 2H', 1, 1, 45, 39, bg],
+	[22, 'Spike Trap', 1, 1, 45, 39, bg],
+	[23, 'Stalagmites', 1, 1, 45, 39, bg],
+	[24, 'Stone Pillar', 1, 1, 45, 39, bg],
+	[25, 'Stump', 1, 1, 45, 39, bg],
+	[26, 'Table 2H', 1, 1, 45, 39, bg],
+	[27, 'Totem', 1, 1, 45, 39, bg],
+	[28, 'Treasure Tile', 1, 1, 45, 39, bg],
+	[29, 'Tree 3H', 1, 1, 45, 39, bg],
+	[30, 'Wall Section 2H', 1, 1, 45, 39, bg]
 ];
 TMP_LIST2 = FromRAWToLIST(MOVABLE_TOKENS2_RAW);
 MOVABLE_TOKENS_LIST = Object.assign(TMP_LIST1, TMP_LIST2);
@@ -215,26 +217,26 @@ MOVABLE_TOKENS_LIST = Object.assign(TMP_LIST1, TMP_LIST2);
 var ImagePathConditionImage = "_common/conditions_tokens/";
 var ImagePathConditionFigureToken = "_common/conditions_tokens/";
 CONDITIONS_INITIAL = [
-	['Bless', true, false],
-	['Curse', true, false],
-	['Disarm', true, false],
-	['Immobilize', true, false],
-	['Invisible', true, false],
-	['Muddle', true, false],
-	['Poison', true, false],
-	['Strengthen', true, false],
-	['Stun', true, false],
-	['Wound', true, false],
-	['Angry Face', true, false],
-	['Aeromancer', true, false],
+	[1, 'Bless', true, false],
+	[2, 'Curse', true, false],
+	[3, 'Disarm', true, false],
+	[4, 'Immobilize', true, false],
+	[5, 'Invisible', true, false],
+	[6, 'Muddle', true, false],
+	[7, 'Poison', true, false],
+	[8, 'Strengthen', true, false],
+	[9, 'Stun', true, false],
+	[10, 'Wound', true, false],
+	[11, 'Angry Face', true, false],
+	[12, 'Aeromancer', true, false],
 ];
 
 var CONDITIONS = {};
 var CONDITIONS_LIST = [];
 
 for (var i = 0; i < CONDITIONS_INITIAL.length; i++) {
-	CONDITIONS_LIST.push(CONDITIONS_INITIAL[i][0]);
-	CONDITIONS[CONDITIONS_INITIAL[i][0]] = { 'hasConditionCard': CONDITIONS_INITIAL[i][1], 'canApplyMultipleTimes': CONDITIONS_INITIAL[i][2] };
+	CONDITIONS_LIST.push(CONDITIONS_INITIAL[i][1]);
+	CONDITIONS[CONDITIONS_INITIAL[i][1]] = { 'hasConditionCard': CONDITIONS_INITIAL[i][2], 'canApplyMultipleTimes': CONDITIONS_INITIAL[i][3] };
 }
 
 // -----------------------------------------------
@@ -245,46 +247,46 @@ var MinionSuffix = ' normal' //' minion';
 var dummy = 'dummy';
 
 var MONSTERS_RAW = [
-	['Ancient Artillery', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Bandit Archer', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Bandit Guard', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Black Imp', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Cave Bear', 1, 1, 41, 35, bg, false, [dummy], false],
-	['City Archer', 1, 1, 41, 35, bg, false, [dummy], false],
-	['City Guard', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Cultist', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Deep Terror', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Earth Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Flame Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Forest Imp', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Frost Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Giant Viper', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Harrower Infester', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Hound', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Inox Archer', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Inox Bodyguard', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Inox Guard', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Inox Shaman', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Living Bones', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Living Corpse', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Living Spirit', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Lurker', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Night Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Ooze', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Rending Drake', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Savvas Icestorm', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Savvas Lavaflow', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Spitting Drake', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Stone Golem', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Sun Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Vermling Scout', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Vermling Shaman', 1, 1, 41, 35, bg, false, [dummy], false],
-	['Wind Demon', 1, 1, 41, 35, bg, false, [dummy], false],
-	['JotL Black Sludge', 1, 1, 41, 35, jotl, false, [dummy], false]
+	[1, 'Ancient Artillery', 1, 1, 41, 35, bg, false, [dummy], false],
+	[2, 'Bandit Archer', 1, 1, 41, 35, bg, false, [dummy], false],
+	[3, 'Bandit Guard', 1, 1, 41, 35, bg, false, [dummy], false],
+	[4, 'Black Imp', 1, 1, 41, 35, bg, false, [dummy], false],
+	[5, 'Cave Bear', 1, 1, 41, 35, bg, false, [dummy], false],
+	[6, 'City Archer', 1, 1, 41, 35, bg, false, [dummy], false],
+	[7, 'City Guard', 1, 1, 41, 35, bg, false, [dummy], false],
+	[8, 'Cultist', 1, 1, 41, 35, bg, false, [dummy], false],
+	[9, 'Deep Terror', 1, 1, 41, 35, bg, false, [dummy], false],
+	[10, 'Earth Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[11, 'Flame Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[12, 'Forest Imp', 1, 1, 41, 35, bg, false, [dummy], false],
+	[13, 'Frost Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[14, 'Giant Viper', 1, 1, 41, 35, bg, false, [dummy], false],
+	[15, 'Harrower Infester', 1, 1, 41, 35, bg, false, [dummy], false],
+	[16, 'Hound', 1, 1, 41, 35, bg, false, [dummy], false],
+	[17, 'Inox Archer', 1, 1, 41, 35, bg, false, [dummy], false],
+	[18, 'Inox Bodyguard', 1, 1, 41, 35, bg, false, [dummy], false],
+	[19, 'Inox Guard', 1, 1, 41, 35, bg, false, [dummy], false],
+	[20, 'Inox Shaman', 1, 1, 41, 35, bg, false, [dummy], false],
+	[21, 'Living Bones', 1, 1, 41, 35, bg, false, [dummy], false],
+	[22, 'Living Corpse', 1, 1, 41, 35, bg, false, [dummy], false],
+	[23, 'Living Spirit', 1, 1, 41, 35, bg, false, [dummy], false],
+	[24, 'Lurker', 1, 1, 41, 35, bg, false, [dummy], false],
+	[25, 'Night Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[26, 'Ooze', 1, 1, 41, 35, bg, false, [dummy], false],
+	[27, 'Rending Drake', 1, 1, 41, 35, bg, false, [dummy], false],
+	[28, 'Savvas Icestorm', 1, 1, 41, 35, bg, false, [dummy], false],
+	[29, 'Savvas Lavaflow', 1, 1, 41, 35, bg, false, [dummy], false],
+	[30, 'Spitting Drake', 1, 1, 41, 35, bg, false, [dummy], false],
+	[31, 'Stone Golem', 1, 1, 41, 35, bg, false, [dummy], false],
+	[32, 'Sun Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[33, 'Vermling Scout', 1, 1, 41, 35, bg, false, [dummy], false],
+	[34, 'Vermling Shaman', 1, 1, 41, 35, bg, false, [dummy], false],
+	[35, 'Wind Demon', 1, 1, 41, 35, bg, false, [dummy], false],
+	[36, 'JotL Black Sludge', 1, 1, 41, 35, jotl, false, [dummy], false]
 ];
 
 function getMonsterTraits(i) {
-	var traitsArray = MONSTERS_RAW[i][7];
+	var traitsArray = MONSTERS_RAW[i][8];
 	var result = [];
 	for (var j = 0; j < traitsArray.length; j++) {
 		result.push(urlize(traitsArray[j]));
@@ -296,34 +298,34 @@ MONSTERS_LIST = FromRAWToLIST(MONSTERS_RAW);
 //add missing specific fields
 for (var i = 0; i < MONSTERS_RAW.length; i++) {
 	OneItem = MONSTERS_LIST[MONSTERS_RAW[i][0]];
-	OneItem.ranged = MONSTERS_RAW[i][6];
+	OneItem.ranged = MONSTERS_RAW[i][7];
 	OneItem.traits = getMonsterTraits(i);
-	OneItem.hasBack = MONSTERS_RAW[i][8];
+	OneItem.hasBack = MONSTERS_RAW[i][9];
 }
 
 //MONSTERS_LIST.sort(listsort);
 
 var LIEUTENANTS_RAW = [
-	['Bandit Commander', 1, 1, 41, 35, bg, false],
-	['Captain of the Guard', 1, 1, 41, 35, bg, false],
-	['Dark Rider', 1, 1, 41, 35, bg, false],
-	['Elder Drake', 1, 1, 41, 35, bg, false],
-	['Inox Bodyguard', 1, 1, 41, 35, bg, false],
-	['Jekserah', 1, 1, 41, 35, bg, false],
-	['Merciless Overseer', 1, 1, 41, 35, bg, false],
-	['Prime Demon', 1, 1, 41, 35, bg, false],
-	['The Betrayer', 1, 1, 41, 35, bg, false],
-	['The Colorless', 1, 1, 41, 35, bg, false],
-	['The Gloom', 1, 1, 41, 35, bg, false],
-	['The Sightless Eye', 1, 1, 41, 35, bg, false],
-	['Winged Horror', 1, 1, 41, 35, bg, false],
+	[1, 'Bandit Commander', 1, 1, 41, 35, bg, false],
+	[2, 'Captain of the Guard', 1, 1, 41, 35, bg, false],
+	[3, 'Dark Rider', 1, 1, 41, 35, bg, false],
+	[4, 'Elder Drake', 1, 1, 41, 35, bg, false],
+	[5, 'Inox Bodyguard', 1, 1, 41, 35, bg, false],
+	[6, 'Jekserah', 1, 1, 41, 35, bg, false],
+	[7, 'Merciless Overseer', 1, 1, 41, 35, bg, false],
+	[8, 'Prime Demon', 1, 1, 41, 35, bg, false],
+	[9, 'The Betrayer', 1, 1, 41, 35, bg, false],
+	[10, 'The Colorless', 1, 1, 41, 35, bg, false],
+	[11, 'The Gloom', 1, 1, 41, 35, bg, false],
+	[12, 'The Sightless Eye', 1, 1, 41, 35, bg, false],
+	[13, 'Winged Horror', 1, 1, 41, 35, bg, false],
 ];
 
 LIEUTENANTS_LIST = FromRAWToLIST(LIEUTENANTS_RAW);
 //add missing specific fields
 for (var i = 0; i < LIEUTENANTS_RAW.length; i++) {
 	OneItem = LIEUTENANTS_LIST[LIEUTENANTS_RAW[i][0]];
-	OneItem.hasBack = LIEUTENANTS_RAW[i][6];
+	OneItem.hasBack = LIEUTENANTS_RAW[i][7];
 }
 
 
@@ -332,38 +334,38 @@ for (var i = 0; i < LIEUTENANTS_RAW.length; i++) {
 var MAX_Heroes = 4
 
 var HEROES_RAW = [
-	['Brute', 1, 1, 41, 35, bg, , , dummy],
-	['Cragheart', 1, 1, 41, 35, bg, , , dummy],
-	['Mindthief', 1, 1, 41, 35, bg, , , dummy],
-	['Scoundrel', 1, 1, 41, 35, bg, , , dummy],
-	['Spellweaver', 1, 1, 41, 35, bg, , , dummy],
-	['Tinkerer', 1, 1, 41, 35, bg, , , dummy],
-	['Angry Face', 1, 1, 41, 35, bg, , , dummy],
-	//	['Bladeswarm',1,1,41,35,bg,,,dummy],
-	['Circles', 1, 1, 41, 35, bg, , , dummy],
-	['Cthulhu', 1, 1, 41, 35, bg, , , dummy],
-	['Lightning', 1, 1, 41, 35, bg, , , dummy],
-	['Moon', 1, 1, 41, 35, bg, , , dummy],
-	['Musical Note', 1, 1, 41, 35, bg, , , dummy],
-	['Three Spears', 1, 1, 41, 35, bg, , , dummy],
-	['Triangle', 1, 1, 41, 35, bg, , , dummy],
-	['Saw', 1, 1, 41, 35, bg, , , dummy],
-	['Sun', 1, 1, 41, 35, bg, , , dummy],
-	['Two Mini', 1, 1, 41, 35, bg, , , dummy],
-	['Voidwarden', 1, 1, 41, 35, bg, , , dummy],
-	['Demolitionist', 1, 1, 41, 35, bg, , , dummy],
-	['Red Guard', 1, 1, 41, 35, bg, , , dummy],
-	['Hatchet', 1, 1, 41, 35, bg, , , dummy],
-	['Aeromancer', 1, 1, 41, 35, bg, , , dummy],
+	[1, 'Brute', 1, 1, 41, 35, bg, , , dummy],
+	[2, 'Cragheart', 1, 1, 41, 35, bg, , , dummy],
+	[3, 'Mindthief', 1, 1, 41, 35, bg, , , dummy],
+	[4, 'Scoundrel', 1, 1, 41, 35, bg, , , dummy],
+	[5, 'Spellweaver', 1, 1, 41, 35, bg, , , dummy],
+	[6, 'Tinkerer', 1, 1, 41, 35, bg, , , dummy],
+	[7, 'Angry Face', 1, 1, 41, 35, bg, , , dummy],
+	//[8, 'Bladeswarm',1,1,41,35,bg,,,dummy],
+	[9, 'Circles', 1, 1, 41, 35, bg, , , dummy],
+	[10, 'Cthulhu', 1, 1, 41, 35, bg, , , dummy],
+	[11, 'Lightning', 1, 1, 41, 35, bg, , , dummy],
+	[12, 'Moon', 1, 1, 41, 35, bg, , , dummy],
+	[13, 'Musical Note', 1, 1, 41, 35, bg, , , dummy],
+	[14, 'Three Spears', 1, 1, 41, 35, bg, , , dummy],
+	[15, 'Triangle', 1, 1, 41, 35, bg, , , dummy],
+	[16, 'Saw', 1, 1, 41, 35, bg, , , dummy],
+	[17, 'Sun', 1, 1, 41, 35, bg, , , dummy],
+	[18, 'Two Mini', 1, 1, 41, 35, bg, , , dummy],
+	[19, 'Voidwarden', 1, 1, 41, 35, bg, , , dummy],
+	[20, 'Demolitionist', 1, 1, 41, 35, bg, , , dummy],
+	[21, 'Red Guard', 1, 1, 41, 35, bg, , , dummy],
+	[22, 'Hatchet', 1, 1, 41, 35, bg, , , dummy],
+	[23, 'Aeromancer', 1, 1, 41, 35, bg, , , dummy],
 ];
 
 HEROES_LIST = FromRAWToLIST(HEROES_RAW);
 //add missing specific fields
 for (var i = 0; i < HEROES_RAW.length; i++) {
 	OneItem = HEROES_LIST[HEROES_RAW[i][0]];
-	OneItem.hp = HEROES_RAW[i][6];
-	OneItem.stamina = HEROES_RAW[i][7];
-	OneItem.archetype = HEROES_RAW[i][8];
+	OneItem.hp = HEROES_RAW[i][7];
+	OneItem.stamina = HEROES_RAW[i][8];
+	OneItem.archetype = HEROES_RAW[i][9];
 }
 
 HEROES_LIST = SortLIST(HEROES_LIST);
@@ -371,82 +373,82 @@ HEROES_LIST = SortLIST(HEROES_LIST);
 // ------------------------------------------------------
 
 VILLAGERS_RAW = [
-	['Air', 1, 1, 41, 35, bg, true],
-	['Dark', 1, 1, 41, 35, bg, false],
-	['Earth', 1, 1, 41, 35, bg, false],
-	['Fire', 1, 1, 41, 35, bg, false],
-	['Ice', 1, 1, 41, 35, bg, false],
-	['Light', 1, 1, 41, 35, bg, false],
-	['Giant Rat', 1, 1, 41, 35, bg, false],
-	['Mystic Ally', 1, 1, 41, 35, bg, false],
-	['Rat Swarm', 1, 1, 41, 35, bg, false],
-	['Void Eater', 1, 1, 41, 35, bg, false],
-	['Bat Swarm', 1, 1, 41, 35, bg, false],
-	['Rock Colossus', 1, 1, 41, 35, bg, false],
-	['Black Unicorn', 1, 1, 41, 35, bg, false],
-	['Iron Beast', 1, 1, 41, 35, bg, false],
-	['Nail Spheres', 1, 1, 41, 35, bg, false],
-	['Healing Sprite', 1, 1, 41, 35, bg, false],
-	['Thorn Shooter', 1, 1, 41, 35, bg, false],
-	['Lava Golem', 1, 1, 41, 35, bg, false],
-	['Shadow Wolf', 1, 1, 41, 35, bg, false],
-	['Slime Spirit', 1, 1, 41, 35, bg, false],
-	['Skeleton', 1, 1, 41, 35, bg, false],
-	['Jade Falcon', 1, 1, 41, 35, bg, false],
-	['Warrior Spirit', 1, 1, 41, 35, bg, false],
-	['Orchid', 1, 1, 41, 35, bg, false],
-	['Redthorn', 1, 1, 41, 35, bg, false],
-	['Burning Avatar', 1, 1, 41, 35, bg, false],
-	['Bear', 1, 1, 41, 35, bg, false],
-	['Giant Toad', 1, 1, 41, 35, bg, false],
-	['Zephyr', 1, 1, 41, 35, bg, false],
-	['Swamp Alligator', 1, 1, 41, 35, bg, false],
+	[1, 'Air', 1, 1, 41, 35, bg, true],
+	[2, 'Dark', 1, 1, 41, 35, bg, false],
+	[3, 'Earth', 1, 1, 41, 35, bg, false],
+	[4, 'Fire', 1, 1, 41, 35, bg, false],
+	[5, 'Ice', 1, 1, 41, 35, bg, false],
+	[6, 'Light', 1, 1, 41, 35, bg, false],
+	[7, 'Giant Rat', 1, 1, 41, 35, bg, false],
+	[8, 'Mystic Ally', 1, 1, 41, 35, bg, false],
+	[9, 'Rat Swarm', 1, 1, 41, 35, bg, false],
+	[10, 'Void Eater', 1, 1, 41, 35, bg, false],
+	[11, 'Bat Swarm', 1, 1, 41, 35, bg, false],
+	[12, 'Rock Colossus', 1, 1, 41, 35, bg, false],
+	[13, 'Black Unicorn', 1, 1, 41, 35, bg, false],
+	[14, 'Iron Beast', 1, 1, 41, 35, bg, false],
+	[15, 'Nail Spheres', 1, 1, 41, 35, bg, false],
+	[16, 'Healing Sprite', 1, 1, 41, 35, bg, false],
+	[17, 'Thorn Shooter', 1, 1, 41, 35, bg, false],
+	[18, 'Lava Golem', 1, 1, 41, 35, bg, false],
+	[19, 'Shadow Wolf', 1, 1, 41, 35, bg, false],
+	[20, 'Slime Spirit', 1, 1, 41, 35, bg, false],
+	[21, 'Skeleton', 1, 1, 41, 35, bg, false],
+	[22, 'Jade Falcon', 1, 1, 41, 35, bg, false],
+	[23, 'Warrior Spirit', 1, 1, 41, 35, bg, false],
+	[24, 'Orchid', 1, 1, 41, 35, bg, false],
+	[25, 'Redthorn', 1, 1, 41, 35, bg, false],
+	[26, 'Burning Avatar', 1, 1, 41, 35, bg, false],
+	[27, 'Bear', 1, 1, 41, 35, bg, false],
+	[28, 'Giant Toad', 1, 1, 41, 35, bg, false],
+	[29, 'Zephyr', 1, 1, 41, 35, bg, false],
+	[30, 'Swamp Alligator', 1, 1, 41, 35, bg, false],
 ];
 
 VILLAGERS_LIST = FromRAWToLIST(VILLAGERS_RAW);
 //add missing specific fields
 for (var i = 0; i < VILLAGERS_RAW.length; i++) {
 	OneItem = VILLAGERS_LIST[VILLAGERS_RAW[i][0]];
-	OneItem.hasBack = VILLAGERS_RAW[i][6];
+	OneItem.hasBack = VILLAGERS_RAW[i][7];
 }
 
 // ------------------------------------------------------
 
 FAMILIARS_RAW = [
-	['Blue1', 1, 1, 35, 35, bg, false],
-	['Blue2', 1, 1, 35, 35, bg, false],
-	['Blue3', 1, 1, 35, 35, bg, false],
-	['Blue4', 1, 1, 35, 35, bg, false],
-	['Green1', 1, 1, 35, 35, bg, false],
-	['Green2', 1, 1, 35, 35, bg, false],
-	['Green3', 1, 1, 35, 35, bg, false],
-	['Green4', 1, 1, 35, 35, bg, false],
-	['Grey1', 1, 1, 35, 35, bg, false],
-	['Grey2', 1, 1, 35, 35, bg, false],
-	['Grey3', 1, 1, 35, 35, bg, false],
-	['Magenta1', 1, 1, 35, 35, bg, false],
-	['Magenta2', 1, 1, 35, 35, bg, false],
-	['Magenta3', 1, 1, 35, 35, bg, false],
-	['Magenta4', 1, 1, 35, 35, bg, false],
-	['Orange1', 1, 1, 35, 35, bg, false],
-	['Orange2', 1, 1, 35, 35, bg, false],
-	['Orange3', 1, 1, 35, 35, bg, false],
-	['Orange4', 1, 1, 35, 35, bg, false],
-	['Purple1', 1, 1, 35, 35, bg, false],
-	['Purple2', 1, 1, 35, 35, bg, false],
-	['Purple3', 1, 1, 35, 35, bg, false],
-	['Purple4', 1, 1, 35, 35, bg, false],
-	['Red1', 1, 1, 35, 35, bg, false],
-	['Red2', 1, 1, 35, 35, bg, false],
-	['Red3', 1, 1, 35, 35, bg, false],
-	['Red4', 1, 1, 35, 35, bg, false]
+	[1, 'Blue1', 1, 1, 35, 35, bg, false],
+	[2, 'Blue2', 1, 1, 35, 35, bg, false],
+	[3, 'Blue3', 1, 1, 35, 35, bg, false],
+	[4, 'Blue4', 1, 1, 35, 35, bg, false],
+	[5, 'Green1', 1, 1, 35, 35, bg, false],
+	[6, 'Green2', 1, 1, 35, 35, bg, false],
+	[7, 'Green3', 1, 1, 35, 35, bg, false],
+	[8, 'Green4', 1, 1, 35, 35, bg, false],
+	[9, 'Grey1', 1, 1, 35, 35, bg, false],
+	[10, 'Grey2', 1, 1, 35, 35, bg, false],
+	[11, 'Grey3', 1, 1, 35, 35, bg, false],
+	[12, 'Magenta1', 1, 1, 35, 35, bg, false],
+	[13, 'Magenta2', 1, 1, 35, 35, bg, false],
+	[14, 'Magenta3', 1, 1, 35, 35, bg, false],
+	[15, 'Magenta4', 1, 1, 35, 35, bg, false],
+	[16, 'Orange1', 1, 1, 35, 35, bg, false],
+	[17, 'Orange2', 1, 1, 35, 35, bg, false],
+	[18, 'Orange3', 1, 1, 35, 35, bg, false],
+	[19, 'Orange4', 1, 1, 35, 35, bg, false],
+	[20, 'Purple1', 1, 1, 35, 35, bg, false],
+	[21, 'Purple2', 1, 1, 35, 35, bg, false],
+	[22, 'Purple3', 1, 1, 35, 35, bg, false],
+	[23, 'Purple4', 1, 1, 35, 35, bg, false],
+	[24, 'Red1', 1, 1, 35, 35, bg, false],
+	[25, 'Red2', 1, 1, 35, 35, bg, false],
+	[26, 'Red3', 1, 1, 35, 35, bg, false],
+	[27, 'Red4', 1, 1, 35, 35, bg, false]
 ];
 
 FAMILIARS_LIST = FromRAWToLIST(FAMILIARS_RAW);
 //add missing specific fields
 for (var i = 0; i < FAMILIARS_RAW.length; i++) {
 	OneItem = FAMILIARS_LIST[FAMILIARS_RAW[i][0]];
-	OneItem.hasBack = FAMILIARS_RAW[i][6];
+	OneItem.hasBack = FAMILIARS_RAW[i][7];
 }
 
 

@@ -30,7 +30,6 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	this.MainCardsPath = "";
 	this.MainMapTokensPath = "";
 	this.UsesExpansionPath = false;
-	this.ExpansionPath = false;
 	this.DisplayExpansionNameInSelect = false;
 	this.needExpantionFilter = false;
 
@@ -95,7 +94,7 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 			//lineHTML.append($('<button type="button" class="btn btn-danger" aria-expanded="false" onclick="RemoveOneRow(this);' + AdditionalCallBacks + RemoveCallBack + '">Remove ' + this.elementName + '</button>'));
 		}
 
-		lineHTML.append(Create_MainElementList(this.elementName, this.elementID, this.NameListValues, this.needRemoveButton, AdditionalCallBacks, RemoveCallBack));
+		lineHTML.append(this.Create_InnerMainElementList(this.elementName, this.elementID, this.NameListValues, this.needRemoveButton, AdditionalCallBacks, RemoveCallBack));
 
 		if (this.needSideList == true) {
 			lineHTML.append(Create_SideList());
@@ -135,13 +134,13 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 		return lineHTML;
 	};
 	this.Set_MainElement = function (RowElement, NewValue) {
-		Set_MainElement(RowElement, this.elementID, NewValue);
+		this.Set_InnerMainElement(RowElement, this.elementID, NewValue);
 		if (this.needCoordinates == true) {
 			Update_XY(RowElement, this.XYBase)
 		}
 	};
 	this.UnSet_MainElement = function (RowElement) {
-		UnSet_MainElement(RowElement, this.elementName, this.elementID);
+		this.UnSet_InnerMainElement(RowElement, this.elementName, this.elementID);
 		if (this.needCoordinates == true) {
 			UnSet_X(RowElement);
 			UnSet_Y(RowElement);
@@ -150,7 +149,7 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	this.AddOneLineWithData = function (NewData) {
 		var lineHTMLwithData = this.AddOneEmptyLine();
 
-		Set_MainElement(lineHTMLwithData, this.elementID, NewData.title);
+		this.Set_InnerMainElement(lineHTMLwithData, this.elementID, NewData.id);
 		if (this.needSideList == true) {
 			Set_Side(lineHTMLwithData, NewData.side);
 		}
@@ -194,7 +193,7 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	this.GetOneLineData = function (RowElement) {
 		var LineData = {};
 
-		LineData.title = Get_MainElement(RowElement);
+		LineData.id = this.Get_InnerMainElement(RowElement);
 		if (this.needSideList == true) {
 			LineData.side = Get_Side(RowElement);
 		}
@@ -231,8 +230,54 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 		}
 		if (this.needRemoveButton == true) {
 		}
+		//if (this.UsesExpansionPath == true) {
+		//	LineData.expansion = 
+		//}
 		return LineData;
 	};
+
+	// Main Element
+	this.Create_InnerMainElementList = function (elementTitle, elementID, MainElementListValues, needRemoveButton, AdditionalCallBacks, RemoveCallBack) {
+		var html = createInputSelect('Select ' + elementTitle, elementID + '-title', 'select-' + elementID);
+
+		if (needRemoveButton == true) {
+			var removeButton = $('<a class="boxclose" id="boxclose" onclick="RemoveOneRow(this);' + AdditionalCallBacks + RemoveCallBack + '"></a>');
+			html.find('.btn').prepend(removeButton);
+		}
+
+		html.find('ul').append(MainElementListValues);
+		html.append($('<input type="hidden" name="MainElement-Value" class="MainElement-Value" value=""/>'));
+		html.append($('<input type="hidden" name="MainElement-ID" class="MainElement-ID" value="' + elementID + '"/>'));
+		return html;
+	}
+
+	this.Get_InnerMainElement = function (RowElement) {
+		return RowElement.find('.MainElement-Value').val();
+	}
+
+	this.Set_InnerMainElement = function (RowElement, elementID, NewValue) {
+		if (NewValue == 0) {
+			return false;
+		}
+
+		var NewTitle = "";
+		if (this.elementID == "monster") {
+			var MonsterBaseID = recoverMonsterBaseName(NewValue);
+			var MonsterSuffit = NewValue.replace(MonsterBaseID, '');
+			NewTitle = this.AllData[MonsterBaseID].title + ' ' + MonsterSuffit;
+		}
+		else {
+			NewTitle = this.AllData[NewValue].title + ' ';
+		}
+
+		RowElement.find('.' + elementID + '-title').html(NewTitle);
+		RowElement.find('.MainElement-Value').attr('value', NewValue);
+	}
+
+	this.UnSet_InnerMainElement = function (RowElement, elementTitle, elementID) {
+		RowElement.find('.' + elementID + '-title').html('Select ' + elementTitle);
+		RowElement.find('.MainElement-Value').attr('value', '');
+	}
 }
 
 
@@ -240,29 +285,6 @@ function RemoveOneRow(element) {
 	$(element).parents('.select-row').remove();
 }
 
-// Main Element
-function Create_MainElementList(elementTitle, elementID, MainElementListValues, needRemoveButton, AdditionalCallBacks, RemoveCallBack) {
-	var html = createInputSelect('Select ' + elementTitle, elementID + '-title', 'select-' + elementID);
-
-	if (needRemoveButton == true) {
-		var removeButton = $('<a class="boxclose" id="boxclose" onclick="RemoveOneRow(this);' + AdditionalCallBacks + RemoveCallBack + '"></a>');
-		html.find('.btn').prepend(removeButton);
-	}
-
-	html.find('ul').append(MainElementListValues);
-	html.append($('<input type="hidden" name="MainElement-Value" class="MainElement-Value" value=""/>'));
-	html.append($('<input type="hidden" name="MainElement-ID" class="MainElement-ID" value="' + elementID + '"/>'));
-	return html;
-}
-
-function Get_MainElement(RowElement) {
-	return RowElement.find('.MainElement-Value').val();
-}
-
-function Set_MainElement(RowElement, elementID, NewValue) {
-	RowElement.find('.' + elementID + '-title').html(NewValue + ' ');
-	RowElement.find('.MainElement-Value').attr('value', NewValue);
-}
 
 
 
@@ -293,10 +315,6 @@ function Set_MainElement(RowElement, elementID, NewValue) {
 //			}
 
 
-function UnSet_MainElement(RowElement, elementTitle, elementID) {
-	RowElement.find('.' + elementID + '-title').html('Select ' + elementTitle);
-	RowElement.find('.MainElement-Value').attr('value', '');
-}
 
 // Side Element
 function Create_SideList() {

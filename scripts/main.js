@@ -334,10 +334,52 @@ function RetroCompatibility(OldConfig) {
 			delete NewConfig['hero' + i.toString()];
 		}
 
+		//replace titles by ids
+		for (var i = 0; NewConfig.tiles != undefined && i < NewConfig.tiles.length; i++) {
+			NewConfig.tiles[i].id = FromTitleToID(tileLine.AllData, NewConfig.tiles[i].title);
+		}
+		for (var i = 0; NewConfig.overlaytiles != undefined && i < NewConfig.overlaytiles.length; i++) {
+			NewConfig.overlaytiles[i].id = FromTitleToID(OverlayTileLine.AllData, NewConfig.overlaytiles[i].title);
+		}
+		for (var i = 0; NewConfig.doors != undefined && i < NewConfig.doors.length; i++) {
+			NewConfig.doors[i].id = FromTitleToID(doorLine.AllData, NewConfig.doors[i].title);
+		}
+		for (var i = 0; NewConfig.maptokens != undefined && i < NewConfig.maptokens.length; i++) {
+			NewConfig.maptokens[i].id = FromTitleToID(MovableMapTokenLine.AllData, NewConfig.maptokens[i].title);
+		}
+		for (var i = 0; NewConfig.familiars != undefined && i < NewConfig.familiars.length; i++) {
+			NewConfig.familiars[i].id = FromTitleToID(familiarLine.AllData, NewConfig.familiars[i].title);
+		}
+		for (var i = 0; NewConfig.villagers != undefined && i < NewConfig.villagers.length; i++) {
+			NewConfig.villagers[i].id = FromTitleToID(villagerLine.AllData, NewConfig.villagers[i].title);
+		}
+		for (var i = 0; NewConfig.monsters != undefined && i < NewConfig.monsters.length; i++) {
+			var MonsterBaseName = recoverMonsterBaseName(NewConfig.monsters[i].title);
+			var MonsterSuffit = NewConfig.monsters[i].title.replace(MonsterBaseName, '');
+			NewConfig.monsters[i].id = FromTitleToID(monsterLine.AllData, MonsterBaseName) + MonsterSuffit;
+		}
+		for (var i = 0; NewConfig.lieutenants != undefined && i < NewConfig.lieutenants.length; i++) {
+			NewConfig.lieutenants[i].id = FromTitleToID(lieutenantLine.AllData, NewConfig.lieutenants[i].title);
+		}
+		for (var i = 0; NewConfig.heroes != undefined && i < NewConfig.heroes.length; i++) {
+			NewConfig.heroes[i].id = FromTitleToID(heroLine.AllData, NewConfig.heroes[i].title);
+		}
+
 		AndOlder = true;
 	}
 	return NewConfig;
 }
+
+function FromTitleToID(LIST, TitleValue) {
+	var NewIDValue = 0;
+	Object.keys(LIST).forEach(item => {
+		if (LIST[item].title == TitleValue) {
+			NewIDValue = item;
+		}
+	});
+	return NewIDValue;
+}
+
 
 function rebuildMap(element, mapNb) {
 	var mapConfig = recoverConfig(MAP_HASES_LIST[mapNb][3]);

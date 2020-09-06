@@ -80,7 +80,7 @@ function FillZone_Monsters(NewData, FromPreFilledMaps) {
 	ResetZone_Monsters(FromPreFilledMaps);
 	if (NewData.monsters != undefined) {
 		for (var i = 0 ; i < NewData.monsters.length; i++) {
-			monsterLine.XYBase = MONSTERS_LIST[NewData.monsters[i].title.replace(MasterSuffix, '').replace(MinionSuffix, '')].width + 'x' + MONSTERS_LIST[NewData.monsters[i].title.replace(MasterSuffix,'').replace(MinionSuffix,'')].height;
+			monsterLine.XYBase = monsterLine.AllData[recoverMonsterBaseName(NewData.monsters[i].id)].width + 'x' + monsterLine.AllData[recoverMonsterBaseName(NewData.monsters[i].id)].height;
 			var html = monsterLine.AddOneLineWithData(NewData.monsters[i]);
 			$('.monster-container').append(html);
 		}
@@ -112,12 +112,13 @@ function Create_MonsterListValues() {
 			monsterClass += ' ';
 			monsterClass += urlize(OneItem[1].traits[j]);
 		}
-		var monsterTitle = OneItem[0];
+		var monsterID = OneItem[0];
+		var monsterTitle = OneItem[1].title;
 		var monsterVisible = true; //(monsterTraits[OneItem[1].traits[0]] != undefined || monsterTraits[OneItem[1].traits[1]] != undefined) && selectedExpansions[OneItem[1].expansion] != undefined;
-		var option = $(addOption(monsterTitle + MasterSuffix, monsterClass, 'Set_Monster(this, \'' + monsterTitle + MasterSuffix + '\');'));
+		var option = $(addOption(monsterTitle + MasterSuffix, monsterClass, 'Set_Monster(this, \'' + monsterID + MasterSuffix + '\');'));
 		option.css('display', monsterVisible ? 'block' : 'none');
 		html += option[0].outerHTML;
-		option = $(addOption(monsterTitle + MinionSuffix, monsterClass, 'Set_Monster(this, \'' + monsterTitle + MinionSuffix + '\');'));
+		option = $(addOption(monsterTitle + MinionSuffix, monsterClass, 'Set_Monster(this, \'' + monsterID + MinionSuffix + '\');'));
 		option.css('display', monsterVisible ? 'block' : 'none');
 		html += option[0].outerHTML;
 	});
@@ -132,8 +133,8 @@ function Set_Monster(element, value) {
 		//by default minion
 		value = value + MinionSuffix;
 	}
-	var OneMonsterValue = value.replace(MasterSuffix,'').replace(MinionSuffix,'');
-	monsterLine.XYBase = MONSTERS_LIST[OneMonsterValue].width + 'x' + MONSTERS[OneMonsterValue].height;
+	var OneMonsterValue = recoverMonsterBaseName(value);
+	monsterLine.XYBase = monsterLine.AllData[OneMonsterValue].width + 'x' + monsterLine.AllData[OneMonsterValue].height;
 	monsterLine.Set_MainElement(container, value);
 
 	var monsterHp;
@@ -151,7 +152,7 @@ function Set_Monster(element, value) {
 		}
 	}
 
-	Set_HP(container, monsterHp)
+	Set_CustomInput(0, false, container, monsterHp);
 	Update_MonsterImages(container);
 }
 
@@ -173,11 +174,11 @@ function Update_MonsterImages(RowElement) {
 		{
 			var MonsterImage = $('<img>');
 			var ImageCardPath = ImagePathRoot + monsterLine.CardsPath(EXPANSION_PATHS[monsterLine.AllData[OneMonsterValue].expansion]);
-			MonsterImage.attr('src', ImageCardPath + urlize(OneMonsterValue) + LevelAddition + '.png').addClass('monster').addClass(urlize(OneMonsterValue));
+			MonsterImage.attr('src', ImageCardPath + urlize(monsterLine.AllData[OneMonsterValue].title) + LevelAddition + '.png').addClass('monster').addClass(urlize(OneMonsterValue));
 			MonsterImageContainer.append(MonsterImage);
 			if (MONSTERS_LIST[OneMonsterValue].hasBack) {
 				var monsterCardBack = $('<img>');
-				monsterCardBack.attr('src', ImageCardPath + urlize(OneMonsterValue) + '_back' + LevelAddition + '.png');
+				monsterCardBack.attr('src', ImageCardPath + urlize(monsterLine.AllData[OneMonsterValue].title) + '_back' + LevelAddition + '.png');
 				MonsterImageContainer.append(monsterCardBack);
 			}
 		}
@@ -245,14 +246,14 @@ function RemoveLine_Lieutenant(Button) {
 function Create_LieutenantListValues() {
 	var html = addOption('Clear', '', 'UnSet_Lieutenant(this);');
 	Object.keys(LIEUTENANTS_LIST).forEach(item => {
-		html += addOption(item + ' ', '', 'Set_Lieutenant(this, \'' + item + '\')');
+		html += addOption(LIEUTENANTS_LIST[item].title + ' ', '', 'Set_Lieutenant(this, \'' + item + '\')');
 	});
 	return html;
 }
 
 function Set_Lieutenant(element, value) {
 	var container = $(element).parents('.select-row');
-	lieutenantLine.XYBase = LIEUTENANTS_LIST[value].width + 'x' + LIEUTENANTS_LIST[value].height;
+	lieutenantLine.XYBase = lieutenantLine.AllData[value].width + 'x' + lieutenantLine.AllData[value].height;
 	lieutenantLine.Set_MainElement(container, value);
 	Update_LieutenantImages(container);
 }
@@ -275,11 +276,11 @@ function Update_LieutenantImages(RowElement) {
 	{
 		var LieutenantImage = $('<img>');
 		var ImageCardPath = ImagePathRoot + lieutenantLine.CardsPath(EXPANSION_PATHS[lieutenantLine.AllData[OneLieutenantValue].expansion]);
-		LieutenantImage.attr('src', ImageCardPath + urlize(OneLieutenantValue) + LevelAddition + '.png').addClass('lieutenant').addClass(urlize(OneLieutenantValue));
+		LieutenantImage.attr('src', ImageCardPath + urlize(ieutenantLine.AllData[OneLieutenantValue].title) + LevelAddition + '.png').addClass('lieutenant').addClass(urlize(ieutenantLine.AllData[OneLieutenantValue].title));
 		LieutenantImageContainer.append(LieutenantImage);
 		if (LIEUTENANTS_LIST[OneLieutenantValue].hasBack) {
 			var LieutenantCardBack = $('<img>');
-			LieutenantCardBack.attr('src', ImageCardPath + urlize(OneLieutenantValue) + LevelAddition + '_back' + '.png');
+			LieutenantCardBack.attr('src', ImageCardPath + urlize(ieutenantLine.AllData[OneLieutenantValue].title) + LevelAddition + '_back' + '.png');
 			LieutenantImageContainer.append(LieutenantCardBack);
 		}
 	}
