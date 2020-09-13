@@ -144,18 +144,19 @@ OVERLAYTILES_RAW = [
 	[6, 'corridor natural stone 2h', 1, 1, 45, 39, bg],
 	[7, 'corridor wood 1h', 1, 1, 45, 39, bg],
 	[8, 'corridor wood 2h', 1, 1, 45, 39, bg],
-	[9, 'pressure plate', 1, 1, 45, 39, bg],
-	[10, 'hot coals', 1, 1, 45, 39, bg],
-	[11, 'hot coals 2h', 1, 1, 45, 39, bg],
-	[12, 'hot coals 3h', 1, 1, 45, 39, bg],
-	[13, 'log 2h', 1, 1, 45, 39, bg],
-	[14, 'rubble', 1, 1, 45, 39, bg],
-	[15, 'stairs', 1, 1, 45, 39, bg],
-	[16, 'thorns', 1, 1, 45, 39, bg],
-	[17, 'water', 1, 1, 45, 39, bg],
-	[18, 'water 2h', 1, 1, 45, 39, bg],
-	[19, 'water 3h', 1, 1, 45, 39, bg]
-]; 
+	[9, 'dark corridor 2h', 1, 1, 45, 39, bg],
+	[10, 'pressure plate', 1, 1, 45, 39, bg],
+	[11, 'hot coals', 1, 1, 45, 39, bg],
+	[12, 'hot coals 2h', 1, 1, 45, 39, bg],
+	[13, 'hot coals 3h', 1, 1, 45, 39, bg],
+	[14, 'log 2h', 1, 1, 45, 39, bg],
+	[15, 'rubble', 1, 1, 45, 39, bg],
+	[16, 'stairs', 1, 1, 45, 39, bg],
+	[17, 'thorns', 1, 1, 45, 39, bg],
+	[18, 'water', 1, 1, 45, 39, bg],
+	[19, 'water 2h', 1, 1, 45, 39, bg],
+	[20, 'water 3h', 1, 1, 45, 39, bg]
+];
 OVERLAYTILES_LIST = FromRAWToLIST(OVERLAYTILES_RAW);
 
 DOORS_RAW = [
@@ -196,18 +197,19 @@ MOVABLE_TOKENS2_RAW = [
 	[16, 'Fountain', 1, 1, 45, 39, bg],
 	[17, 'Nest', 1, 1, 45, 39, bg],
 	[18, 'Poison Gas Trap', 1, 1, 45, 39, bg],
-	[19, 'Rock Column', 1, 1, 45, 39, bg],
-	[20, 'Sarcophagus 2H', 1, 1, 45, 39, bg],
-	[21, 'Shelf 2H', 1, 1, 45, 39, bg],
-	[22, 'Spike Trap', 1, 1, 45, 39, bg],
-	[23, 'Stalagmites', 1, 1, 45, 39, bg],
-	[24, 'Stone Pillar', 1, 1, 45, 39, bg],
-	[25, 'Stump', 1, 1, 45, 39, bg],
-	[26, 'Table 2H', 1, 1, 45, 39, bg],
-	[27, 'Totem', 1, 1, 45, 39, bg],
-	[28, 'Treasure Tile', 1, 1, 45, 39, bg],
-	[29, 'Tree 3H', 1, 1, 45, 39, bg],
-	[30, 'Wall Section 2H', 1, 1, 45, 39, bg]
+	[19, 'Rift', 1, 1, 45, 39, bg],
+	[20, 'Rock Column', 1, 1, 45, 39, bg],
+	[21, 'Sarcophagus 2H', 1, 1, 45, 39, bg],
+	[22, 'Shelf 2H', 1, 1, 45, 39, bg],
+	[23, 'Spike Trap', 1, 1, 45, 39, bg],
+	[24, 'Stalagmites', 1, 1, 45, 39, bg],
+	[25, 'Stone Pillar', 1, 1, 45, 39, bg],
+	[26, 'Stump', 1, 1, 45, 39, bg],
+	[27, 'Table 2H', 1, 1, 45, 39, bg],
+	[28, 'Totem', 1, 1, 45, 39, bg],
+	[29, 'Treasure Tile', 1, 1, 45, 39, bg],
+	[30, 'Tree 3H', 1, 1, 45, 39, bg],
+	[31, 'Wall Section 2H', 1, 1, 45, 39, bg]
 ];
 TMP_LIST2 = FromRAWToLIST(MOVABLE_TOKENS2_RAW);
 MOVABLE_TOKENS_LIST = Object.assign(TMP_LIST1, TMP_LIST2);
@@ -224,11 +226,12 @@ CONDITIONS_INITIAL = [
 	[5, 'Invisible', true, false],
 	[6, 'Muddle', true, false],
 	[7, 'Poison', true, false],
-	[8, 'Strengthen', true, false],
-	[9, 'Stun', true, false],
-	[10, 'Wound', true, false],
-	[11, 'Angry Face', true, false],
-	[12, 'Aeromancer', true, false],
+	[8, 'Regenerate', true, false],
+	[9, 'Strengthen', true, false],
+	[10, 'Stun', true, false],
+	[11, 'Wound', true, false],
+	[12, 'Angry Face', true, false],
+	[13, 'Aeromancer', true, false],
 ];
 
 var CONDITIONS = {};
@@ -358,6 +361,7 @@ var HEROES_RAW = [
 	[21, 'Red Guard', 1, 1, 41, 35, bg, , , dummy],
 	[22, 'Hatchet', 1, 1, 41, 35, bg, , , dummy],
 	[23, 'Aeromancer', 1, 1, 41, 35, bg, , , dummy],
+	[24, 'Diviner', 1, 1, 41, 35, bg, , , dummy],
 ];
 
 HEROES_LIST = FromRAWToLIST(HEROES_RAW);
