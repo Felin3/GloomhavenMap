@@ -61,6 +61,9 @@ function Create_ExpansionList()
 {
 	var html;
 	html = $('<div>').addClass('expansions');
+	var container = $('<div>').addClass('expansions-container');
+	container.append('<h1>Expansion Filters</h1>');
+	html.append(container);
 	for (var expansionGroup in EXPANSION_GROUPS) {
 		if (EXPANSION_GROUPS[expansionGroup] == undefined) continue;
 		var GroupHTML = $('<div>').addClass('expansions-group');
@@ -68,11 +71,10 @@ function Create_ExpansionList()
 
 		var expansionList = EXPANSION_GROUPS[expansionGroup];
 		for (var i = 0; i < expansionList.length; i++) {
-			var expansion = expansionList[i];
 			var expansionObject = $('<div>').addClass('checkbox');
-			var expansionInput = $('<input type="checkbox" class="Expansions-Value" name="' + folderize(expansion) + '" onClick="Set_Expansion(this, \'' + folderize(expansion) + '\');" />');
+			var expansionInput = $('<input type="checkbox" class="Expansions-Value" name="' + expansionList[i].id + '" onClick="Set_Expansion(this, \'' + expansionList[i].id + '\');" />');
 			expansionInput.prop('checked', true);
-			expansionObject.append($('<label> ' + expansion + '</label>').prepend(expansionInput));
+			expansionObject.append($('<label> ' + expansionList[i].title + '</label>').prepend(expansionInput));
 			GroupHTML.append(expansionObject);
 		}
 		html.append(GroupHTML);
@@ -81,11 +83,33 @@ function Create_ExpansionList()
 }
 
 function Set_Expansion(element, value) {
-	if ($(element).hasClass('expansions')) {
-		$('[name="' + urlize(value) + '"]').prop('checked',true);
+	//should update all expansions : on many windows
+	var NewValue;
+	if ($(element).length == 1 && $(element).hasClass('Expansions-Value')) {
+		//recover new value
+		NewValue = $(element).prop('checked');
 	}
+	else {
+		//from FillZone new value is true
+		NewValue = true;
+	}
+	//check all others checkboxes with same value
+	$('[name="' + value + '"]').prop('checked', NewValue);
+
+	if ($(element).length == 1 && $(element).hasClass('Expansions-Value')) {
+		//updatte config for later updating filtered lists
+		GetZone_Expansions(config);
+	}
+
 	//Data Linked
+	// the update should redraw the lists : ul / dropdown-menu
 	updateMonstersVisibility();
+	UpdateAllSelectcLists("tiles");
+	UpdateAllSelectcLists("hero");
+	UpdateAllSelectcLists("monsters");
+	UpdateAllSelectcLists("lieutenants");
+	UpdateAllSelectcLists("familiars");
+	UpdateAllSelectcLists("villagers");
 }
 
 function GetZone_Expansions(DataToUpdate) {

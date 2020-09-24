@@ -1,5 +1,7 @@
 function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	//global parameters (the same for every MainElement)
+	this.ZoneTitleTerm = "";
+	this.AddElementTerm = "";
 	this.elementName = elementName;
 	this.elementID = folderize(elementID).toLowerCase();
 	this.elementStorageName = elementStorageName;
@@ -31,7 +33,7 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 	this.MainMapTokensPath = "";
 	this.UsesExpansionPath = false;
 	this.DisplayExpansionNameInSelect = false;
-	this.needExpantionFilter = false;
+	this.UseExpantionFilter = false;
 
 	this.CallBackOnRemove = RemoveCallBack;		// -> should have a value if needRemoveButton = true
 
@@ -91,7 +93,6 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 			if (this.needAddRelicButton == true && this.RelicCommonImageContainer != "") {
 				AdditionalCallBacks = AdditionalCallBacks + "Update_RelicImages(this.parentElement);";
 			}
-			//lineHTML.append($('<button type="button" class="btn btn-danger" aria-expanded="false" onclick="RemoveOneRow(this);' + AdditionalCallBacks + RemoveCallBack + '">Remove ' + this.elementName + '</button>'));
 		}
 
 		lineHTML.append(this.Create_InnerMainElementList(this.elementName, this.elementID, this.NameListValues, this.needRemoveButton, AdditionalCallBacks, RemoveCallBack));
@@ -261,7 +262,7 @@ function LineClass(elementName, elementID, elementStorageName, RemoveCallBack) {
 		}
 
 		var NewTitle = "";
-		if (this.elementID == "monster") {
+		if (this.elementID == "monsters") {
 			var MonsterBaseID = recoverMonsterBaseName(NewValue);
 			var MonsterSuffit = NewValue.replace(MonsterBaseID, '');
 			NewTitle = this.AllData[MonsterBaseID].title + ' ' + MonsterSuffit;
@@ -285,34 +286,15 @@ function RemoveOneRow(element) {
 	$(element).parents('.select-row').remove();
 }
 
+function UpdateLineLists(element) {
+	$(element).parents('.select-row').remove();
+}
 
 
 
 
 
-//			var monster = config.monsters[i];
-//			if (monster.title != '') {
-//				var monsterLine = addMonsterLine();
-//				var width = monster.vertical ? MONSTERS[monster.title].width : MONSTERS[monster.title].height;
-//				var height = monster.vertical ? MONSTERS[monster.title].height : MONSTERS[monster.title].width;
-//
-//				var monsterSelectUnit = monsterLine.find('[onclick="updateMonster(this, \'' + monster.title + '\');"]');
-//				var correctMonsterSelectUnit;
-//
-//				if (monster.master && $(monsterSelectUnit[0]).html().indexOf('master') > -1 || !monster.master && !($(monsterSelectUnit[0]).html().indexOf('master') > -1)) {
-//					correctMonsterSelectUnit = monsterSelectUnit[0];
-//				} else {
-//					correctMonsterSelectUnit = monsterSelectUnit[1];
-//				}
-//				updateMonster(correctMonsterSelectUnit, monster.title);
-//
-//				var xValue = width.toString() + monster.x.toString();
-//				updateCoordinate(monsterLine.find('.select-x [onclick="updateCoordinate(this, \'' + xValue + '\');"]'), xValue);
-//				var yValue = height.toString() + monster.y.toString();
-//				updateCoordinate(monsterLine.find('.select-y [onclick="updateCoordinate(this, \'' + yValue + '\');"]'), yValue);
-//				monsterLine.find('input[name="monster-hp"]').val(monster.hp);
-//				updateConditionsInSettings(monster.conditions, monsterLine);
-//			}
+
 
 
 

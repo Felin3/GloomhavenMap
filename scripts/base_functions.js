@@ -15,7 +15,7 @@ function somethingize(value, replacement) {
 		console.log('somethingize value is undefined');
 		return '';
 	}
-	return value.replace(new RegExp(" ",'g'), replacement).toLowerCase();
+	return value.toString().replace(new RegExp(" ",'g'), replacement).toLowerCase();
 }
 
 function mapTilize(value) {
@@ -79,4 +79,25 @@ function InitializeSpectrum(StartElement,elementNb) {
 	//put HTML under object instead of end of document
 	var NewParent = StartElement.parent().find(".sp-replacer.full"+elementNb+"-spectrum").parent();
 	$(".sp-container.full"+elementNb+"-spectrum").detach().appendTo(NewParent);
+}
+
+function listsort(a, b) {
+	if (a[0] < b[0]) return -1;
+	if (a[0] > b[0]) return 1;
+	return 0;
+}
+
+function dynamicSort(property) {
+	var sortOrder = 1;
+	if (property[0] === "-") {
+		sortOrder = -1;
+		property = property.substr(1);
+	}
+	return function (a, b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+		var result = (a[1][property] < b[1][property]) ? -1 : (a[1][property] > b[1][property]) ? 1 : 0;
+		return result * sortOrder;
+	}
 }
